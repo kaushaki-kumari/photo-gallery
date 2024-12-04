@@ -1,37 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Photo Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="photo-container">
-        <img src="photos/photo-01.jpg" alt="Image 1">
-        <img src="photos/photos-02.png" alt="Image 2">
-        <img src="photos/photo-03.png" alt="Image 3">
-        <img src="photos/photo-04.png" alt="Image 4">
-        <img src="photos/photo-05.jpg" alt="Image 5">
-        <img src="photos/photo-06.jpg" alt="Image 6">
-        <img src="photos/photo-07.png" alt="Image 7">
-        <img src="photos/photo-08.avif" alt="Image 8">
-        <img src="photos/photo-09.jpeg" alt="Image 9">
-        <img src="photos/photo-10.jpg" alt="Image 10">
-        <img src="photos/photo-11.webp" alt="Image 11">
-        <img src="photos/photo-12.png" alt="Image 12">
-        <img src="photos/photo-13.jpg" alt="Image 13">
-        <img src="photos/photo-14.png" alt="Image 14">
-        <img src="photos/photo-15.jpg" alt="Image 15">
-        <img src="photos/photo-16.jpg" alt="Image 16">
-        <img src="photos/photo-17.jpg" alt="Image 17">
-        <img src="photos/photo-18.jpg" alt="Image 18">
-        <img src="photos/photo-19.jpg" alt="Image 19">
-        <img src="photos/photo-20.jpg" alt="Image 20">
-    </div>
 
+<body>
+    <div class="photo-container"></div>
     <div id="imageModal" class="modal">
-        <img class="modal-content" id="modalImage">
+        <div class="details"><span class="icon"><i class="fa-solid fa-xmark"></i></span></div>
+        <div class="slide prev"><i class="fa-solid fa-angle-left"></i></div>
+        <div class="frame">
+            <div class="slider"></div>
+        </div>
+        <div class="slide next"><i class="fa-solid fa-angle-right"></i></div>
+        <div class="dots"></div>
     </div>
     <script src="main.js"></script>
 </body>
