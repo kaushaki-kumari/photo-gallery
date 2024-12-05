@@ -153,6 +153,12 @@ body {
         top: 42.5%;
         right: 38.9%;
     }
+
+    .button {
+        width: 16px;
+        height: 16px;
+        border: 2px solid white;
+    }
 }
 
 @media (max-width: 1440px){
