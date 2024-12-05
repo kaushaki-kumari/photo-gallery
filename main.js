@@ -1,9 +1,9 @@
 const photoContainer = document.querySelector('.photo-container');
 const modal = document.querySelector('#imageModal');
 const slider = document.querySelector('.slider');
-const prev = document.querySelector('.prev');
-const next = document.querySelector('.next');
-const closeModalButton = document.querySelector('.icon'); 
+const leftArrow = document.querySelector('.prev');
+const rightArrow = document.querySelector('.next');
+const closeModalButton = document.querySelector('.icon');
 const frame = document.querySelector('.frame');
 let sliderNumber = 1;
 let frameWidth = calculateFrameWidth();
@@ -42,21 +42,21 @@ function calculateFrameWidth() {
 
 const updateFrameWidthAndSlider = () => {
     frameWidth = calculateFrameWidth();
-    slider.style.width = `${frameWidth * imagesArray.length}px`; 
+    slider.style.width = `${frameWidth * imagesArray.length}px`;
     const slides = slider.querySelectorAll('.images');
     slides.forEach(slide => {
         slide.style.width = `${frameWidth}px`;
     });
-    updateSliderPosition(); 
+    updateSliderPosition();
 };
 
-window.addEventListener('resize', updateFrameWidthAndSlider); 
+window.addEventListener('resize', updateFrameWidthAndSlider);
 
 imagesArray.forEach((src, index) => {
     const img = document.createElement('img');
     img.src = src;
     img.alt = `Image ${index + 1}`;
-    img.addEventListener('click', () => openModal(index)); 
+    img.addEventListener('click', () => openModal(index));
     photoContainer.appendChild(img);
 
     const slideImg = document.createElement('img');
@@ -69,7 +69,7 @@ imagesArray.forEach((src, index) => {
 /*  dots slide  */
 const dots = document.querySelector('.dots');
 
-for(let i = 0 ; i<imagesArray.length; i++){
+for (let i = 0; i < imagesArray.length; i++) {
     const div = document.createElement('div');
     div.className = 'button'
     dots.appendChild(div);
@@ -77,38 +77,37 @@ for(let i = 0 ; i<imagesArray.length; i++){
 
 const buttons = document.querySelectorAll('.button');
 
-
-const resetBg = () =>{
-    buttons.forEach((button)=>{
-        button.style.backgroundColor = 'transparent' ;
-        button.addEventListener('mouseover',stopAutoSlide);
-           button.addEventListener('mouseout',autostartSlide);
+const resetDotBg = () => {
+    buttons.forEach((button) => {
+        button.style.backgroundColor = 'transparent';
+        button.addEventListener('mouseover', stopAutoSlide);
+        button.addEventListener('mouseout', autostartSlide);
     });
 };
 
 const updateDots = () => {
-    resetBg();
+    resetDotBg();
     buttons[sliderNumber - 1].style.backgroundColor = 'white';
 };
 
-buttons.forEach((button,i) =>{
-     button.addEventListener('click' , ()=>{
-        slider.style.transform = `translateX(-${i*frameWidth}px)`;
-        sliderNumber= i+1;
+buttons.forEach((button, i) => {
+    button.addEventListener('click', () => {
+        slider.style.transform = `translateX(-${i * frameWidth}px)`;
+        sliderNumber = i + 1;
         updateDots();
         updateArrows();
     })
 })
 
 const openModal = (index) => {
-    sliderNumber = index + 1; 
+    sliderNumber = index + 1;
     updateSliderPosition();
     updateArrows();
     modal.style.display = 'flex';
 };
 
 const closeModal = () => {
-    modal.style.display = 'none'; 
+    modal.style.display = 'none';
 };
 
 closeModalButton.addEventListener('click', () => {
@@ -121,12 +120,12 @@ const updateSliderPosition = () => {
 };
 
 const updateArrows = () => {
-    prev.style.display = sliderNumber === 1 ? 'none' : 'block';
-    next.style.display = sliderNumber === imagesArray.length ? 'none' : 'block';
+    leftArrow.style.display = sliderNumber === 1 ? 'none' : 'block';
+    rightArrow.style.display = sliderNumber === imagesArray.length ? 'none' : 'block';
 };
 
 /*arrow */
-next.addEventListener('click', () => {
+rightArrow.addEventListener('click', () => {
     if (sliderNumber < imagesArray.length) {
         sliderNumber++;
         updateSliderPosition();
@@ -134,7 +133,7 @@ next.addEventListener('click', () => {
     }
 });
 
-prev.addEventListener('click', () => {
+leftArrow.addEventListener('click', () => {
     if (sliderNumber > 1) {
         sliderNumber--;
         updateSliderPosition();
@@ -142,32 +141,29 @@ prev.addEventListener('click', () => {
     }
 });
 
-
 /* start auto slide show */
 let slideInterval;
-
 const autostartSlide = () => {
-    slideInterval = setInterval(()=>{
+    slideInterval = setInterval(() => {
         if (sliderNumber < imagesArray.length) {
             sliderNumber++;
             updateSliderPosition();
             updateArrows();
         }
-    },3000)
+    }, 3000)
 }
 
-const stopAutoSlide = () =>{
+const stopAutoSlide = () => {
     clearInterval(slideInterval)
 };
 
 autostartSlide();
-
-slider.addEventListener('mouseover',stopAutoSlide);
-slider.addEventListener('mouseout',autostartSlide);
-next.addEventListener('mouseover',stopAutoSlide);
-next.addEventListener('mouseout',autostartSlide);
-prev.addEventListener('mouseover',stopAutoSlide);
-prev.addEventListener('mouseout',autostartSlide);
+slider.addEventListener('mouseover', stopAutoSlide);
+slider.addEventListener('mouseout', autostartSlide);
+rightArrow.addEventListener('mouseover',stopAutoSlide);
+rightArrow.addEventListener('mouseout',autostartSlide);
+leftArrow.addEventListener('mouseover',stopAutoSlide);
+leftArrow.addEventListener('mouseout',autostartSlide);
 updateArrows();
 updateFrameWidthAndSlider();
 
