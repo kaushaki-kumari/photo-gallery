@@ -225,3 +225,48 @@ body {
     
 }
 
+@media(max-width:700px){
+    .photo-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .frame {
+       max-width: 330px; 
+       height: 260px;
+    }
+
+    .details {
+        top: 31%;
+    }
+
+    .button {
+        width: 8px;
+        height: 8px;
+        gap: 5px;
+    }
+
+    .dots {
+        gap: 3px;
+        bottom: 26%;
+    }
+
+    .slide {
+        font-size: 30px;
+    }
+
+    .icon {
+        font-size: 20px;
+    }
+
+}
+
+@media(max-width:425px){
+    .frame {
+       max-width: 300px; 
+    }
+}
+
+@media(max-width:325px){
+    .frame {
+       max-width: 250px; 
+    }
+}

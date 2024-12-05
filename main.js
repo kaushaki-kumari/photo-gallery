@@ -4,9 +4,9 @@ const slider = document.querySelector('.slider');
 const prev = document.querySelector('.prev');
 const next = document.querySelector('.next');
 const closeModalButton = document.querySelector('.icon'); 
-const frameWidth = 600;
+const frame = document.querySelector('.frame');
 let sliderNumber = 1;
-
+let frameWidth = calculateFrameWidth();
 const imagesArray = [
     'photos/photo-01.jpg',
     'photos/photos-02.png',
@@ -30,11 +30,32 @@ const imagesArray = [
     'photos/photo-20.jpg'
 ];
 
+function calculateFrameWidth() {
+    if (window.innerWidth >= 700) {
+        return 600;
+    } else if (window.innerWidth >= 480) {
+        return 400;
+    } else {
+        return window.innerWidth;
+    }
+}
+
+const updateFrameWidthAndSlider = () => {
+    frameWidth = calculateFrameWidth();
+    slider.style.width = `${frameWidth * imagesArray.length}px`; 
+    const slides = slider.querySelectorAll('.images');
+    slides.forEach(slide => {
+        slide.style.width = `${frameWidth}px`;
+    });
+    updateSliderPosition(); 
+};
+
+window.addEventListener('resize', updateFrameWidthAndSlider); 
+
 imagesArray.forEach((src, index) => {
     const img = document.createElement('img');
     img.src = src;
     img.alt = `Image ${index + 1}`;
-    img.classList.add('thumbnail');
     img.addEventListener('click', () => openModal(index)); 
     photoContainer.appendChild(img);
 
@@ -73,6 +94,7 @@ buttons.forEach((button,i) =>{
         slider.style.transform = `translateX(-${i*frameWidth}px)`;
         sliderNumber= i+1;
         updateDots();
+        updateArrows();
     })
 })
 
@@ -119,3 +141,4 @@ prev.addEventListener('click', () => {
 });
 
 updateArrows();
+updateFrameWidthAndSlider();
