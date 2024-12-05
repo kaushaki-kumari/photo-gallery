@@ -91,10 +91,9 @@ body {
 
 .details {
     position: absolute;
-    top: 27%;
-    right: 31%;
     z-index: 10;
-}
+right: 10px;
+    }
 
 .icon {
     font-size: 30px;
@@ -110,8 +109,8 @@ body {
     display: flex;
     justify-content: center;
     gap: 10px;
-    position: absolute; 
-    bottom: 20%; 
+    position: fixed; 
+ margin-top: 10px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -137,10 +136,6 @@ body {
         height: 300px;
     }
 
-    .dots {
-        bottom: 40%;
-    }
-
     .prev {
         left: 32%;
     }
@@ -149,26 +144,10 @@ body {
         right: 32%;
     }
 
-    .details {
-        top: 42.5%;
-        right: 38.9%;
-    }
-
     .button {
         width: 16px;
         height: 16px;
         border: 2px solid white;
-    }
-}
-
-@media (max-width: 1440px){
-    .details {
-        top: 36%;
-        right: 32%;
-    }
-
-    .dots {
-        bottom: 32%;
     }
 }
 
@@ -190,14 +169,6 @@ body {
         right: 15%;
     }
 
-    .details {
-        top: 31%;
-        right: 22%;
-    }
-
-    .dots {
-        bottom: 26%;
-    }
 }
 
 @media (max-width: 768px){
@@ -205,13 +176,7 @@ body {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .details {
-        top: 24%;
-        right: 13%;
-    }
-
     .dots {
-        bottom: 18%;
         gap: 7px;
     }
 
@@ -240,10 +205,6 @@ body {
        height: 260px;
     }
 
-    .details {
-        top: 31%;
-    }
-
     .button {
         width: 8px;
         height: 8px;
@@ -252,7 +213,7 @@ body {
 
     .dots {
         gap: 3px;
-        bottom: 26%;
+
     }
 
     .slide {
