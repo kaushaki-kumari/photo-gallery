@@ -81,6 +81,8 @@ const buttons = document.querySelectorAll('.button');
 const resetBg = () =>{
     buttons.forEach((button)=>{
         button.style.backgroundColor = 'transparent' ;
+        button.addEventListener('mouseover',stopAutoSlide);
+           button.addEventListener('mouseout',autostartSlide);
     });
 };
 
@@ -140,5 +142,33 @@ prev.addEventListener('click', () => {
     }
 });
 
+
+/* start auto slide show */
+let slideInterval;
+
+const autostartSlide = () => {
+    slideInterval = setInterval(()=>{
+        if (sliderNumber < imagesArray.length) {
+            sliderNumber++;
+            updateSliderPosition();
+            updateArrows();
+        }
+    },3000)
+}
+
+const stopAutoSlide = () =>{
+    clearInterval(slideInterval)
+};
+
+autostartSlide();
+
+slider.addEventListener('mouseover',stopAutoSlide);
+slider.addEventListener('mouseout',autostartSlide);
+next.addEventListener('mouseover',stopAutoSlide);
+next.addEventListener('mouseout',autostartSlide);
+prev.addEventListener('mouseover',stopAutoSlide);
+prev.addEventListener('mouseout',autostartSlide);
 updateArrows();
 updateFrameWidthAndSlider();
+
+
