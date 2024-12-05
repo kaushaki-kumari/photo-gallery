@@ -80,8 +80,6 @@ const buttons = document.querySelectorAll('.button');
 const resetDotBg = () => {
     buttons.forEach((button) => {
         button.style.backgroundColor = 'transparent';
-        button.addEventListener('mouseover', stopAutoSlide);
-        button.addEventListener('mouseout', autostartSlide);
     });
 };
 
@@ -153,17 +151,42 @@ const autostartSlide = () => {
     }, 3000)
 }
 
+
 const stopAutoSlide = () => {
     clearInterval(slideInterval)
 };
 
+/* touch move */
+let startX = 0; 
+
+slider.addEventListener('touchstart', (e) => {
+    stopAutoSlide();
+    startX = e.touches[0].clientX; 
+});
+
+slider.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].clientX; 
+    const deltaX = endX - startX; 
+
+    if (Math.abs(deltaX) > 50) { 
+        if (deltaX > 0) {
+            if (sliderNumber > 1) {
+                sliderNumber--;
+                updateSliderPosition();
+                updateArrows();
+            }
+        } else {
+            if (sliderNumber < imagesArray.length) {
+                sliderNumber++;
+                updateSliderPosition();
+                updateArrows();
+            }
+        }
+    }
+});
+
+
 autostartSlide();
-slider.addEventListener('mouseover', stopAutoSlide);
-slider.addEventListener('mouseout', autostartSlide);
-rightArrow.addEventListener('mouseover',stopAutoSlide);
-rightArrow.addEventListener('mouseout',autostartSlide);
-leftArrow.addEventListener('mouseover',stopAutoSlide);
-leftArrow.addEventListener('mouseout',autostartSlide);
 updateArrows();
 updateFrameWidthAndSlider();
 
